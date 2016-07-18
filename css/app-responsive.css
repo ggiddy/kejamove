@@ -1,0 +1,363 @@
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 1060px) {
+  /*----------------Layout--------------*/
+  /**Header**/
+  /* ======= Header ======= */
+  .app-header {
+    padding: 5px 0;
+  }
+
+  .app-header h1.logo .logo-title-inner img
+  {
+    height:50px;
+    width: 160px;
+    margin-left: 10px;
+    margin-top: -5px;
+  }
+  /**App Footer**/
+  .app-footer .footer-col.social-links{
+    float: none!important;
+    clear: both;
+  }
+  /**End Footer**/
+
+/**-------Pages-----------------**/
+/**Start Page**/
+.panel.app-container.start-page .app-footer
+{
+  top:0px;
+}
+.panel.app-container.start-page .app-header
+{
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+.panel.page.start-page .panel.hero-welcome .hero-title,
+.panel.page.start-page .panel.carousel-form.request-form
+{
+   padding-top: 250px;
+}
+
+.panel.page.start-page .panel.hero-welcome .hero-title h1,
+.panel.page.start-page .panel.carousel-form.request-form .heading
+{
+   font-size: 28px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .btn
+{
+  width: 200px;
+  margin-top: -50px;
+  margin-left: 0px;
+  font-family: 'Open Sans Bold', sans-serif;
+  font-weight: bold;
+}
+
+.panel.page.request-items .field
+{
+   width:auto; 
+   padding-bottom: 20px;
+   text-align: left;
+}
+
+.panel.page.request-items .field .item-title
+{
+  display: block;
+  width: 150px;
+}
+
+}
+
+@media only screen and (max-width : 800px) {
+
+  .panel.page.start-page .panel.hero-welcome .hero-title
+  {
+     padding-top: 200px;
+  }
+
+  .panel.page.start-page .panel.carousel-form.request-form .btn
+  {
+    width: 200px;
+    margin-top: -50px;
+    margin-left: 0px;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-weight: bold;
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (max-width : 600px) {
+  /*----------------Layout--------------*/
+/**Header**/
+/* ======= Header ======= */
+.app-header {
+  padding: 5px 0;
+}
+
+.app-header h1.logo .logo-title-inner img
+{
+  height:32px;
+  width: 125px;
+  margin-left: -10px;
+  margin-top: -5px;
+}
+.app-header .main-nav .navbar-toggle {
+   position: relative;
+   top: -10px;
+}
+.app-header .main-nav .navbar-toggle:focus {
+  outline: none;
+}
+.app-header .main-nav .navbar-toggle:hover {
+  background: #FBB03B;
+}
+.app-header .main-nav .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+/**End App Header**/
+/**App Footer**/
+.app-footer {
+  position: relative;
+  background: #666666;
+  color: #fff;
+  padding: 15px 0;
+}
+.app-footer .footer-content
+{
+  padding-bottom: 25px;
+}
+
+.app-footer .footer-col .title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 19px;
+}
+/***--------End Layout----------***/
+
+/**-------Pages-----------------**/
+/**Start Page**/
+
+.panel.app-container.start-page .app-footer
+{
+  top:0px;
+}
+
+.panel.app-container.start-page .app-header
+{
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+
+.panel.page.start-page
+{
+  top: 0px;
+  height: 100%;
+}
+
+.panel.page.start-page .panel.flip-panels
+{
+   min-height: 200px;
+}
+
+.panel.page.start-page .panel.hero-welcome
+{
+    height: 100px;
+}
+
+.panel.page.start-page .panel.hero-welcome .hero-title
+{
+   padding-top: 100px;
+}
+
+.panel.page.start-page .panel.hero-welcome .hero-title h1
+{
+   font-size: 25px;
+}
+
+.panel.page.start-page .panel.hero-welcome .hero-actions
+{
+   padding-top: 30px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form > .header .heading
+{
+   width: auto;
+   font-size: 25px;
+}
+.panel.page.start-page .panel.carousel-form.request-form
+{
+  padding-top: 100px;
+  height: 500px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .carousel-inner
+{
+   padding: 0px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .carousel-indicators li
+{
+  height: 26px;
+  width: 26px;
+  padding: 3px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .carousel-indicators li.active
+{
+  color: #fbb03b;
+  background-color: #fff;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .form-group
+{
+  padding: 0px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .form-label
+{
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .item-icon
+{
+  height: 32px;
+  width: 32px;
+  border-radius: 25px;
+}
+
+.panel.page.start-page .panel.carousel-form.request-form .btn
+{
+  width: 200px;
+  margin-top: -50px;
+  margin-left: 0px;
+  font-family: 'Open Sans Bold', sans-serif;
+  font-weight: bold;
+}
+
+.panel.page.start-page .panel.testimonials
+{
+  margin-top: -10px;
+}
+/**End Start Page**/
+
+/**----Setup Pages---**/
+/**Setup Page**/
+.panel.page.setup
+{
+  padding-top: 50px;
+}
+
+.panel.page.setup > .header .heading
+{
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.panel.page.setup > .header img
+{
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+
+.panel.page.setup > .content
+{
+  padding: 40px 0px 40px 0px!important;
+  text-align: center;
+}
+
+.panel.page.setup > .content .container
+{
+   margin: 2px;
+}
+
+.panel.page.setup .action-group .btn
+{
+  width: 240px;
+  padding: 12px!important;
+  margin: 10px 10px 10px -10px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+/**End Setup Page**/
+
+/**Request Received**/
+.panel.page.setup.request-received
+{
+  color: #898989;
+}
+/**End Request Recieved**/
+
+/**Request Items Inventory**/
+.panel.page.request-items .sub-heading,
+.panel.page.request-items .form-label
+{
+  font-family: 'Raleway', sans-serif;
+  font-weight: normal;
+  color: #898989;
+}
+
+.panel.page.request-items .form-group,
+.panel.page.request-items .form-group > *
+{
+    padding: 0px;
+}
+
+.panel.page.request-items .form-label
+{
+  display: inline-block;
+  float: left;
+  width: auto;
+}
+
+.panel.page.request-items .sub-heading
+{
+  padding-bottom: 30px;
+  font-size: 19px;
+  color: #893bfb;
+}
+
+.panel.page.request-items .field,
+.panel.page.request-items .checkbox-inline
+{
+  position: relative;
+  width: 100%!important;
+  text-align: left;
+}
+
+.panel.page.request-items .field
+{
+   padding-bottom: 20px;
+}
+
+.panel.page.request-items .checkbox-inline .item-title,
+.panel.page.request-items .checkbox-inline .item-count
+{
+  display: block;
+  width:250px;
+  margin: 0px 0px 0px -20px;
+  color: #686868!important;
+-webkit-text-fill-color:#686868;
+}
+
+/**End Request Items Inventory*/
+/**----End Setup Pages---**/
+/**--------------End Pages--------------**/
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) and (max-width : 480px) {
+/***---------------Layout-------***/
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+
+}

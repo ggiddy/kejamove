@@ -1,0 +1,20 @@
+<?php	if(!defined('BASEPATH')) exit('Access Denied');
+class {class} extends {class-prefix}Model
+{
+	{properties}protected $model_table = '{table}';
+	public function __construct(array $data = array())
+	{
+		parent::__construct($data);
+		$this->errors = {errors}
+	}
+
+	public function relations()
+	{
+		return {relations}
+	}
+	
+	public function rules()
+	{
+		return {rules}
+	}
+}

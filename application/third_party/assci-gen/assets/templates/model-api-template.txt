@@ -1,0 +1,9 @@
+<?php	if(!defined('BASEPATH')) exit('Access Denied');
+require_once '{include-file}.php';
+class {class} extends {parent-class}
+{
+	public function __construct(array $data = array(), $save=false)
+	{
+		parent::__construct($data, $save);
+	}
+}

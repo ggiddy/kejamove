@@ -1,0 +1,24 @@
+Dashboard:
+	Requests
+	 	Quotation
+	 	Status
+	 	Checklist
+	 	CRUD OPS(Deletion, Editing)
+	 	Add user info.
+	 	Add no. of bedrooms
+	 	Filter (By phone number)
+	 	Tabs (By status)
+	 	Pagination & Endless Scrolling	 	
+	 Reporting
+	 	No. of Requests
+	 	No. of Scheduled
+	 	No. of Completed
+	 	No. of Fall offs
+	 	Conversion Rate (No of Request / Completed Requests) 
+	 	Graph Represention
+	Admin Account
+		Email
+Kejamove Cpanel Password: lbMw^B{.[5sK
+Total Requests, Moves, Revenue
+
+
