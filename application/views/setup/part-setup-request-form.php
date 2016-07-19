@@ -12,57 +12,40 @@
 							</span>
 						</div>
 						<div class="carousel-inner">
-							<div class="item active">
+							<div id="location-details" class="item active">
 								<div class="form-group">
 									<section id="move_path" style="min-height: 100%; z-index: 2000"></section>
-										<div class="select-options">
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-xs-12 col-sm-5">
-														<strong>From:</strong><br>
-														<div class="input-group">
-													      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
-													      <input class="form-control moving-from" id="moving-from" type="text" name="request[moving_from]" value="<?php if(isset($moving_from)) echo $moving_from; ?>" placeholder="Moving from? e.g Kileleshwa" required/>
-													    </div>
-													</div>
-													<div class="col-xs-12 col-sm-2 text-center">
-														<input type="hidden" name="request[distance]" id="hidden_distance" />
-														<br>
-														<p style="color: #fd852d;"><strong id="move_distance"></strong></p>
-													</div>
-													<div class="col-xs-12 col-sm-5">
-														<strong>To:</strong><br>
-														<div class="input-group">
-													      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
-													      <input class="form-control moving-to" id="moving-to" type="text" name="request[moving_to]" value="<?php if(isset($moving_to)) echo $moving_to; ?>" placeholder="Moving to? e.g Kilimani" required/>
-													    </div>
-													</div>
-												</div>
-											</div><br><br>
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-sm-5">
-														<strong>Apartment Floor</strong><br>
-											    		<input id="floor-from" type="number" min="0" max="500" name="request[floor_from]" class="form-control text-center" placeholder="3rd Floor" required autocomplete="off">
-													</div>
-													<div class="col-sm-2">
-														
-													</div>
-													<div class="col-sm-5">
-														<strong>Apartment Floor</strong><br>
-											    		<input id="floor-to" type="number" min="0" max="500" name="request[floor_to]" class="form-control text-center" placeholder="Ground Floor" required autocomplete="off">
-													</div>
-												</div>
-											</div><br><br>
-											<div class="row row-centered">
-												<div class="col-xs-12 col-centered">
-													<div class="col-sm-offset-4">
-														<button type="button" class="btn btn-sm btn-primary btn-color btn-step col-sm-offset-4 text-center" id="moving-to-submit" data-target="#moving-to"><strong>Proceed</strong></button>
-													</div>
-													
-												</div>
-											</div>
+									<div style="color: #000;" class="row select-options ">
+										<div class="col-xs-12 col-sm-5">
+											<strong>From:</strong><br>
+											<div class="input-group">
+										      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
+										      <input class="form-control moving-from" id="moving-from" type="text" name="request[moving_from]" value="<?php if(isset($moving_from)) echo $moving_from; ?>" placeholder="Moving from? e.g Kileleshwa" required/>
+										    </div><br>
+										    <strong>Apartment Floor</strong><br>
+										    <input id="floor-from" type="number" min="0" max="500" name="request[floor_from]" class="form-control" placeholder="3rd Floor" required autocomplete="off">
 										</div>
+										<div class="hidden-xs col-sm-2 text-center">
+											<br>
+											<input type="hidden" name="request[distance]" id="hidden_distance" />
+											<p style="color: #fd852d;"><strong id="move_distance"></strong></p>
+										</div>
+										<div class="col-xs-12 col-sm-5">
+											<strong>To:</strong><br>
+											<div class="input-group col-xs-12">
+										      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
+										      <input class="form-control moving-to" id="moving-to" type="text" name="request[moving_to]" value="<?php if(isset($moving_to)) echo $moving_to; ?>" placeholder="Moving to? e.g Kilimani" required/>
+										    </div><br>
+										    <strong>Apartment Floor</strong>
+										    <input id="floor-to" type="number" min="0" max="500" name="request[floor_to]" class="form-control" placeholder="Ground Floor" required autocomplete="off">
+										</div>
+									</div>
+									<div class="row">
+										<div style="background-color: #fff; padding-bottom: 5px;" class="col-xs-12">
+										<br>
+											<button type="button" class="btn submit-btn btn-primary btn-color btn-step col-sm-offset-2" id="moving-to-submit" data-target="#moving-to"><b>Proceed</b></button>
+										</div>
+									</div>
 									</div>
 								</div>		
 						
@@ -70,11 +53,15 @@
 							<div class="item">
 							<div class="clearfix"></div>
 								<div class="form-group">
-									<h2 class="form-label">
-										<img class="item-icon" src="<?php echo base_url('images/icons/phoneblue1plain.png'); ?>"/>&nbsp;Your phone number so we can get in touch?
-									</h2>
-									<div class="col-md-6 col-md-offset-3">
-										<input class="form-control phone-number text-center" id="phone-number" type="text" name="request[phone]" value="<?php if(isset($phone)) echo $phone; ?>" placeholder="Phone number e.g 0722222222" required/>
+									<div class="row">
+										<h2 class="form-label">
+											<img class="item-icon" src="<?php echo base_url('images/icons/phoneblue1plain.png'); ?>"/>&nbsp;Your phone number so we can get in touch?
+										</h2>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-md-offset-3">
+											<input class="form-control phone-number text-center" id="phone-number" type="text[]\87*-" name="request[phone]" value="<?php if(isset($phone)) echo $phone; ?>" placeholder="Phone number e.g 0722222222" required/>
+										</div>
 									</div>
 									<span class="clearfix"></span>
 								</div>
@@ -83,10 +70,9 @@
 									<div>
 										<input type="hidden" name="normal_signup" value="true"/>
 										<input type="hidden" name="usr_submit" value="true"/>
-										<button class="btn btn-lg btn-primary btn-color btn-step" type="submit"  id="phone-number-submit" name="usr_submit" value="true" data-target="#phone-number">
+										<button class="btn btn-lg btn-primary btn-color btn-step col-md-6 col-md-offset-3" type="submit"  id="phone-number-submit" name="usr_submit" value="true" data-target="#phone-number">
 											<strong>Submit Request</strong>
-										</button>
-										</form>
+										</button>	
 									</div>
 									<span class="clearfix"></span>
 								</div>
@@ -98,7 +84,7 @@
 		</div>
 	</div>
 </div>
-
+</form>
 <?php global $app_scripts; if(!is_array($app_scripts)) $app_scripts=array(); ?>
 <?php $app_scripts['form-component']='js/app/components/form.js'; ?>
 <?php $app_scripts['carousel-form-component']='js/app/components/carousel-form.js'; ?>
@@ -110,11 +96,14 @@
 
 	  var moveMapEl = $('#move_path');
 
-	  $('#floor-from').on('change', function(){
+	  $('#location-details').on('change click', function(){
 	  		moveFromPlace = $('#moving-from').val();
 	  		moveToPlace = $('#moving-to').val();
-	
-	  		showMoveRouteDirection();
+			
+			if(moveFromPlace.length > 0 && moveToPlace.length > 0) {
+				showMoveRouteDirection();
+			}
+	  		
 	  });
 	  	
 

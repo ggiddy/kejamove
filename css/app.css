@@ -1089,23 +1089,35 @@
 @media screen  and (max-width: 979px) /* Tablet */ {
   .select-options 
 	{
-		margin-top: 25%;
+		
 		padding: 10px 20px 10px 20px;
 		background-color: #fff;
 		color: #36302a;
 		z-index: 100;	
+	}
+
+	.submit-btn
+	{
+		min-width: 100%; 
+		padding-left: 2px; 
+		padding-right: 2px;
 	}
 }
 
 @media screen and (max-width: 500px) /* Mobile */ {
   .select-options 
 	{
-		margin-top: 10%;
-		margin-bottom: 10%;
-		padding: 10px 0px 10px 0px;
+		padding: 10px 5px 10px 5px;
+		
 		background-color: #fff;
 		color: #36302a;
 		z-index: 100;	
+	}
+	.submit-btn
+	{
+		min-width: 100%; 
+		padding-left: 2px; 
+		padding-right: 2px;
 	}
 }
 

@@ -231,6 +231,7 @@ class Setup extends Active_Controller
 		$fh_packaging 		= $this->input->post('fh_packaging');
 		$hse_cleaning		= $this->input->post('house_cleaning');
 		$interior_dec		= $this->input->post('interior_decorator');
+		$mpesa_conf_code	= $this->input->post('confirmation_code');
 		$total_cost 		= 0;
 		
 		if($floor_to > 0 || $floor_from > 0) 
@@ -276,6 +277,7 @@ class Setup extends Active_Controller
 	    			'packaging'  		=> $pickup_packaging,
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
+	    			'mpesa_conf_code'	=> $mpesa_conf_code,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 
@@ -323,6 +325,7 @@ class Setup extends Active_Controller
 	    			'packaging'  		=> $canter_packaging,
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
+	    			'mpesa_conf_code'	=> $mpesa_conf_code,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 
@@ -367,6 +370,7 @@ class Setup extends Active_Controller
 	    			'packaging'  		=> $fh_packaging,
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
+	    			'mpesa_conf_code'	=> $mpesa_conf_code,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 

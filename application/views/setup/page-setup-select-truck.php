@@ -4,7 +4,17 @@
 	<div class="container">
     	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
         <!-- Wrapper for slides -->
-        <ul class="nav nav-pills nav-justified">
+        <ul class="nav nav-pills nav-justified hidden-xs">
+            <li id="truckselect" style="border-right: 3px solid #fff;" data-target="#myCarousel" data-slide-to="0" class="active">
+            	<a id="truck_anchor" href="#"><strong>1. House Type</strong></a>
+            </li>
+            <li id="addons" style="border-right: 3px solid #fff;" data-target="#myCarousel" data-slide-to="1">
+           		<a id="addons_anchor" href="#"><strong>2. Select Addons</strong></a></li>
+            <li id="dispatch" data-target="#myCarousel" data-slide-to="2">
+            	<a id="dispatch_anchor" href="#"><strong>3. Dispatch</strong></a>
+            </li>
+        </ul>
+         <ul class="nav nav-pills nav-justified visible-xs">
             <li id="truckselect" style="border-right: 3px solid #fff;" data-target="#myCarousel" data-slide-to="0" class="active">
             	<a id="truck_anchor" href="#"><strong>1. Pick Your Truck</strong></a>
             </li>
@@ -14,9 +24,8 @@
             	<a id="dispatch_anchor" href="#"><strong>3. Dispatch</strong></a>
             </li>
         </ul>
-
         <br>
-        <hr>
+        <hr class="hidden-xs">
 
         <input type="hidden" name="request_id" value="<?php echo $request->id; ?>">
         <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
@@ -30,7 +39,7 @@
             	<div id="pickup_variables" class="row">
 					<div class="col-sm-4 limit">
 						<div id="vehicleimg" class="vehicle text-center">
-						<img id="truckimage" src="<?php echo base_url('/images/trucks/pickup.jpg'); ?>">
+						<img id="truckimage" src="<?php echo base_url('/images/trucks/pickup.png'); ?>">
 					</div>
 					</div>
 					<div class="col-sm-4 limit">
@@ -38,7 +47,7 @@
 								<div class="col-xs-4 col-sm-5 col-md-4">
 									<input id="pickup_loaders" class="form-control" type="number" name="pickup_loaders" min="0" max="99">
 									<br>
-									<small><p>Loaders</p></small>
+									<small><p>Helpers</p></small>
 								</div>
 								<div class="col-xs-8 col-sm-7 col-md-offset-1 col-md-7">
 									<select id="pickup_packaging" class="form-control" name="pickup_packaging">
@@ -76,7 +85,7 @@
 								<div class="col-xs-4 col-sm-5 col-md-4">
 									<input id="canter_loaders" class="form-control" type="number" name="canter_loaders" min="0" max="99">
 									<br>
-									<small><p>Loaders</p></small>
+									<small><p>Helpers</p></small>
 								</div>
 								<div class="col-xs-8 col-sm-7 col-md-offset-1 col-md-7">
 									<select id="canter_packaging" class="form-control" name="canter_packaging">
@@ -114,7 +123,7 @@
 								<div class="col-xs-4 col-sm-5 col-md-4">
 									<input id="fh_loaders" class="form-control" type="number" name="fh_loaders" min="0" max="99">
 									<br>
-									<small><p>Loaders</p></small>
+									<small><p>Helpers</p></small>
 								</div>
 								<div class="col-xs-8 col-sm-7 col-md-offset-1 col-md-7">
 									<select id="fh_packaging" class="form-control" name="fh_packaging">
@@ -205,7 +214,7 @@
                 		<div class="col-xs-8">
                 			<p><small id="base_charge_label" class="hidden">Base Charge</small></p>
                 			<p><small id="distance_charge_label" class="hidden">Distance Charge</small></p>
-                			<p><small id="loaders_label" class="hidden">Loaders</small></p>
+                			<p><small id="loaders_label" class="hidden">Helpers</small></p>
                 			<p><small id="packaging_label" class="hidden">Packaging Material</small></p>
                 			<p><small id="cleaning_label" class="hidden">House Cleaning</small></p>
                 			<p><small id="decorator_label" class="hidden">Interior Decorator</small></p>
@@ -222,6 +231,13 @@
                 			<hr id="values_hr" style="max-width: 70px;" class="hidden">
                 			<p><strong><small id="subtotal"></small></strong></p>
                 		</div>
+                		<br>
+                		<div class="checkbox hidden">
+					        <label>
+					            <input id="email_quote" name="email_quote" type="checkbox" class="form-control"><strong style="padding-left: 2em"> Email quote</strong>
+					        </label>
+					        <input type="email" name="client_email" class="form-control">
+				    	</div>
                 	</div>
                 	<div class="col-xs-12 col-sm-7">
                 		<ol>
@@ -233,7 +249,7 @@
                 			<li>Enter the confirmation code below</li>
                 		</ol>
                 		<div class="col-xs-12 col-sm-8 col-md-7">
-                			<input type="text" name="confirmation_code" class="form-control" placeholder="M-PESA Code" required>
+                			<input style="text-transform: uppercase;"  type="text" name="confirmation_code" class="form-control" placeholder="M-PESA Code" required minlength="10">
                 		</div>
                 		<div class="col-xs-12 col-sm-4 col-md-5">
                 			<button style="border-radius: 0px !important;" type="submit" class="btn btn-lg btn-warning"><strong>Proceed</strong></button>
