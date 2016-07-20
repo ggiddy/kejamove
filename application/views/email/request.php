@@ -10,12 +10,17 @@
 					<p style="padding-left: 100px; font-family:Helvetica, Arial, sans-serif; font-size: 16px; color:#898989;">
 						<table>
 							<tr>
-								<td>Fullname</td>
-								<td>N/A</td>
-							</tr>
-							<tr>
 								<td>Email</td>
-								<td>N/A</td>
+								<td>
+								<?php 
+								if(isset($request['email_address']) && !empty($request['email_address']))
+								{
+									echo $request['email_address']; 
+								} else {
+									echo "N/A";
+								}
+								?>	
+								</td>
 							</tr>
 							<tr>
 								<td>Phone</td>
@@ -42,55 +47,21 @@
 								<td><?php echo $request['distance'] ." Km"; ?></td>
 							</tr>
 							<tr>
-								<td>Vehicle</td>
+								<td>House Type</td>
 								<td>
-								<?php echo ucfirst($request['vehicle']); ?>
+								<?php
+								if($request['vehicle'] == 'pickup')
+								{
+									echo "1 BDR";
+								} else if ($request['vehicle'] == 'canter') {
+									echo "2 BDR";
+								} else {
+									echo "3 BDR";
+								}
+								?>
 								</td>
 							</tr>
-							<tr>
-								<td>Source Floor</td>
-								<td><?php 
-									if($request['floor_from'] == 1) {
-										echo ucfirst($request['floor_from']) ."<sup>st</sup> floor";
-									} else if($request['floor_from'] == 2) {
-										echo ucfirst($request['floor_from']) ."<sup>nd</sup> floor";
-									} else if($request['floor_from'] == 3) {
-										echo ucfirst($request['floor_from']) ."<sup>rd</sup> floor";
-									} else if($request['floor_from'] == 0) {
-										echo ucfirst("Ground floor");
-									}
-									else {
-										echo ucfirst($request['floor_from']) ."<sup>th</sup> floor";
-									}
-									 
-
-									?></td>
-							</tr>
-							<tr>
-								<td>Destination Floor</td>
-								<td><?php 
-									if($request['floor_to'] == 0) {
-										echo ucfirst("Ground floor");
-									} else if($request['floor_to'] == 1) {
-										echo ucfirst($request['floor_to']) ."<sup>st</sup> floor";
-									} else if($request['floor_to'] == 2) {
-										echo ucfirst($request['floor_to']) ."<sup>nd</sup> floor";
-									} else if($request['floor_to'] == 3) {
-										echo ucfirst($request['floor_to']) ."<sup>rd</sup> floor";
-									} else {
-										echo ucfirst($request['floor_to']) ."<sup>th</sup> floor";
-									}
-								?></td>
-							</tr>
-							<tr>
-								<td>Helpers</td>
-								<td><?php if(!empty($request['helpers'])){ echo $request['helpers'];} else { echo "N/A";} ?></td>
-							</tr>
-							<tr>
-								<td>Packaging Material</td>
-								<td><?php if(!empty($request['packaging'])){ echo ucfirst($request['packaging']) ." pack";} else { echo "N/A";} ?></td>
-							</tr>
-							<br/>
+							
 							<tr></tr>
 							<tr>
 								<td><strong>Total Cost</strong></td>

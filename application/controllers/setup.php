@@ -215,7 +215,7 @@ class Setup extends Active_Controller
 	 * @return void
 	 */
 	public function process_request()
-	{
+	{                   
 		//get form data
 		$user_id    		= $this->input->post('user_id');
 		$request_id 		= $this->input->post('request_id');
@@ -223,30 +223,32 @@ class Setup extends Active_Controller
 		$distance 			= $this->input->post('distance');
 		$floor_from 		= $this->input->post('floor_from');
 		$floor_to 			= $this->input->post('floor_to');
-		$pickup_loaders 	= $this->input->post('pickup_loaders');
-		$canter_loaders 	= $this->input->post('canter_loaders');
-		$fh_loaders 		= $this->input->post('fh_loaders');
-		$pickup_packaging 	= $this->input->post('pickup_packaging');
-		$canter_packaging 	= $this->input->post('canter_packaging');
-		$fh_packaging 		= $this->input->post('fh_packaging');
+		$pickup_loaders 	= 2; //$this->input->post('pickup_loaders');
+		$canter_loaders 	= 4; //$this->input->post('canter_loaders');
+		$fh_loaders 		= 5; //$this->input->post('fh_loaders');
+		$pickup_packaging 	= 'little'; //$this->input->post('pickup_packaging');
+		$canter_packaging 	= 'normal'; //$this->input->post('canter_packaging');
+		$fh_packaging 		= 'big'; //$this->input->post('fh_packaging');
 		$hse_cleaning		= $this->input->post('house_cleaning');
 		$interior_dec		= $this->input->post('interior_decorator');
 		$mpesa_conf_code	= $this->input->post('confirmation_code');
+		$client_email		= $this->input->post('client_email');
 		$total_cost 		= 0;
 		
+		/**
 		if($floor_to > 0 || $floor_from > 0) 
 		{
 			$floor = 'notground';
 		} else {
 			$floor = 'ground';
 		}
-
+		*/
+		$floor = 'notground';
 		$request_data = array();
 
 		//perform calculations
 		switch ($truck) {
 			case 'pickup':
-
 				//floor calculations
 				$total_cost += $this->calculate_transit_cost($floor, $distance, $pickup_loaders, $truck);
 		
@@ -278,6 +280,7 @@ class Setup extends Active_Controller
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
 	    			'mpesa_conf_code'	=> $mpesa_conf_code,
+	    			'client_email'		=> $client_email,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 
@@ -285,6 +288,33 @@ class Setup extends Active_Controller
 				$this->db->where('id', $request_id);
 				$this->db->update('moverequests', $request_data);
 
+				//client mail parameters
+				$pickup_distance_charge = $distance*PICKUP_KM_FARE;
+				$pickup_base_charge = PICKUP_BASE_FARE + PACKAGING_SMALL + HELPER_NOT_GROUND*PICKUP_HELPERS;
+
+				$this->db->where('id', $request_id);
+				$request = $this->db->get('moverequests')->result_array()[0];
+				
+				$client_request = array(
+					'moving_from' => $request['moving_from'],
+					'moving_to' => $request['moving_to'],
+					'created' => $request['created'],
+					'distance' => $distance,
+					'email_address' => $client_email,
+					'base_charge' => $pickup_base_charge,
+					'distance_charge' => $pickup_distance_charge,
+					'house_cleaning' => $house_cleaning,
+					'interior_decorator' => $interior_decorator,
+					'subtotal' => $total_cost
+				);
+				
+				
+				//send mail to client
+				if(isset($client_email) && !empty($client_email))
+				{
+					$this->send_client_mail($client_request);
+				}
+                                                                
 				//send mail to kejahunt
 				$this->send_mail($request_data, $user_id, $request_id); 
 	    		
@@ -326,11 +356,39 @@ class Setup extends Active_Controller
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
 	    			'mpesa_conf_code'	=> $mpesa_conf_code,
+	    			'client_email'		=> $client_email,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 
 				$this->db->where('id', $request_id);
 				$this->db->update('moverequests', $request_data);
+
+				//client mail parameters
+				$canter_distance_charge = $distance*CANTER_KM_FARE;
+				$canter_base_charge = CANTER_BASE_FARE + PACKAGING_SMALL + HELPER_NOT_GROUND*CANTER_HELPERS;
+
+				$this->db->where('id', $request_id);
+				$request = $this->db->get('moverequests')->result_array()[0];
+				
+				$client_request = array(
+					'moving_from' => $request['moving_from'],
+					'moving_to' => $request['moving_to'],
+					'created' => $request['created'],
+					'distance' => $distance,
+					'email_address' => $client_email,
+					'base_charge' => $canter_base_charge,
+					'distance_charge' => $canter_distance_charge,
+					'house_cleaning' => $house_cleaning,
+					'interior_decorator' => $interior_decorator,
+					'subtotal' => $total_cost
+				);
+				
+				
+				//send mail to client
+				if(isset($client_email) && !empty($client_email))
+				{
+					$this->send_client_mail($client_request);
+				}
 
 				//send mail to kejahunt
 				$this->send_mail($request_data, $user_id, $request_id);
@@ -371,11 +429,40 @@ class Setup extends Active_Controller
 	    			'house_cleaning'	=> $house_cleaning,
 	    			'interior_decorator'=> $interior_decorator,
 	    			'mpesa_conf_code'	=> $mpesa_conf_code,
+	    			'client_email'		=> $client_email,
 	    			'totalcost'  		=> ceil($total_cost)
 	    		];
 
 				$this->db->where('id', $request_id);
 				$this->db->update('moverequests', $request_data);
+
+				//client mail parameters
+				$fh_distance_charge = $distance*FH_KM_FARE;
+				$fh_base_charge = FH_BASE_FARE + PACKAGING_SMALL + HELPER_NOT_GROUND*FH_HELPERS;
+
+				$this->db->where('id', $request_id);
+				$request = $this->db->get('moverequests')->result_array()[0];
+				
+				$client_request = array(
+					'moving_from' => $request['moving_from'],
+					'moving_to' => $request['moving_to'],
+					'created' => $request['created'],
+					'distance' => $distance,
+					'email_address' => $client_email,
+					'base_charge' => $fh_base_charge,
+					'distance_charge' => $fh_distance_charge,
+					'house_cleaning' => $house_cleaning,
+					'interior_decorator' => $interior_decorator,
+					'subtotal' => $total_cost
+				);
+				
+				
+				//send mail to client
+				if(isset($client_email) && !empty($client_email))
+				{
+					$this->send_client_mail($client_request);
+				}
+				
 
 				//send mail to kejahunt
 				$this->send_mail($request_data, $user_id, $request_id);
@@ -412,7 +499,8 @@ class Setup extends Active_Controller
 			'moving_to'=>$request->moving_to,
 			'floor_from'=> $request->floor_from,
 			'floor_to'=> $request->floor_to,
-			'created' => $request->created
+			'created' => $request->created,
+			'email_address' => $request->client_email
 		);
 
 		//get the request
@@ -427,8 +515,20 @@ class Setup extends Active_Controller
 
 		$this->email->subject('New Move Request');
 		$this->email->message($this->load->view('email/request', array('request'=>$request_data ,'ua'=>$this->input->post('ua'))));
-		//$this->email->send();
+		$this->email->send();
 	}
+
+
+	private function send_client_mail($client_request=array())
+	{  
+        $this->load->library('email');
+        $this->email->from($this->config->item('app-move-request-from-email'), 'Kejamove');
+        $this->email->to($client_request['email_address']); 
+        $this->email->subject('Move Quotation');
+        $this->email->message($this->load->view('email/client_mail', array('request'=>$client_request ,'ua'=>$this->input->post('ua'))));
+		$this->email->send();
+	}
+
 
 	/**
 	 * This method returns the cost of the packaging material.

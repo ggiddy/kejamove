@@ -17,7 +17,7 @@
 | environments.
 |
  */
-$config['base_url'] = 'http://192.168.1.94/kejamove3';
+$config['base_url'] = 'http://localhost/kejamove4';
 
 /*
 |--------------------------------------------------------------------------

@@ -48,9 +48,9 @@ define('CANTER_BASE_FARE',		2500);
 define('FH_BASE_FARE',			4500);
 
 //distance charges
-define('PICKUP_KM_FARE',		1000/3);
-define('CANTER_KM_FARE',		1400/3);
-define('FH_KM_FARE',			2000/3);
+define('PICKUP_KM_FARE',		750/3);
+define('CANTER_KM_FARE',		1050/3);
+define('FH_KM_FARE',			1350/3);
 
 //Helper charges
 define('HELPER_GROUND',				600);
@@ -65,6 +65,11 @@ define('PACKAGING_JUMBO',			8000);
 //Addon charges
 define('HOUSE_CLEANING',				2000);
 define('INTERIOR_DECORATOR',			2000);
+
+//number of helpers
+define('PICKUP_HELPERS', 2);
+define('CANTER_HELPERS', 2);
+define('FH_HELPERS', 2);
 
 
 /* End of file constants.php */

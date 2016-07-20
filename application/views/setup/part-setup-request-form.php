@@ -14,7 +14,7 @@
 						<div class="carousel-inner">
 							<div id="location-details" class="item active">
 								<div class="form-group">
-									<section id="move_path" style="min-height: 100%; z-index: 2000"></section>
+                                                                    <section id="move_path" style="min-height: 100%; z-index: 2000" class="hidden"></section>
 									<div style="color: #000;" class="row select-options ">
 										<div class="col-xs-12 col-sm-5">
 											<strong>From:</strong><br>
@@ -22,8 +22,8 @@
 										      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
 										      <input class="form-control moving-from" id="moving-from" type="text" name="request[moving_from]" value="<?php if(isset($moving_from)) echo $moving_from; ?>" placeholder="Moving from? e.g Kileleshwa" required/>
 										    </div><br>
-										    <strong>Apartment Floor</strong><br>
-										    <input id="floor-from" type="number" min="0" max="500" name="request[floor_from]" class="form-control" placeholder="3rd Floor" required autocomplete="off">
+										    <!--<strong>Apartment Floor</strong><br>
+										    <input id="floor-from" type="number" min="0" max="500" name="request[floor_from]" class="form-control" placeholder="3rd Floor" autocomplete="off">-->
 										</div>
 										<div class="hidden-xs col-sm-2 text-center">
 											<br>
@@ -36,8 +36,8 @@
 										      <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></div>
 										      <input class="form-control moving-to" id="moving-to" type="text" name="request[moving_to]" value="<?php if(isset($moving_to)) echo $moving_to; ?>" placeholder="Moving to? e.g Kilimani" required/>
 										    </div><br>
-										    <strong>Apartment Floor</strong>
-										    <input id="floor-to" type="number" min="0" max="500" name="request[floor_to]" class="form-control" placeholder="Ground Floor" required autocomplete="off">
+										    <!--<strong>Apartment Floor</strong>
+										    <input id="floor-to" type="number" min="0" max="500" name="request[floor_to]" class="form-control" placeholder="Ground Floor" autocomplete="off"> -->
 										</div>
 									</div>
 									<div class="row">
@@ -89,136 +89,4 @@
 <?php $app_scripts['form-component']='js/app/components/form.js'; ?>
 <?php $app_scripts['carousel-form-component']='js/app/components/carousel-form.js'; ?>
 <?php $app_scripts['setup-carousel-form-view']='js/app/views/setup-carousel-form.js'; ?>
-
-<script type="text/javascript">
-	(function($){
-	$(function(){
-
-	  var moveMapEl = $('#move_path');
-
-	  $('#location-details').on('change click', function(){
-	  		moveFromPlace = $('#moving-from').val();
-	  		moveToPlace = $('#moving-to').val();
-			
-			if(moveFromPlace.length > 0 && moveToPlace.length > 0) {
-				showMoveRouteDirection();
-			}
-	  		
-	  });
-	  	
-
-	  var moveMap = new google.maps.Map(moveMapEl.get(0), {
-	    center: {lat: -1.290634, lng: 36.833698},
-	    scrollwheel: false,
-	    draggable: true,
-	    zoom: 13
-      });
-
-	  var moveMapGeocoder = new google.maps.Geocoder();
-
-	  var moveMapDirectionDisplay = new google.maps.DirectionsRenderer({
-	    map: moveMap
-	  });
-
-	  var showMapError = function(message) {
-	      	  var messageContainer = moveMapEl.first();
-
-	      	  messageContainer.append('<span style="visibility:hidden!important;" class="alert alert-danger">'+message+'</span>');
-	      	  messageEl = moveMapEl.parent().find('.alert');
-
-	      	  messageEl.css({
-	      	  	'position': 'fixed',
-	      	  	'top':'150px',
-	      	  	'left': '150px',
-	      	  	'width': '300px',
-	      	  	'height': '100px',
-	      	  	'visibility': 'visible',
-	      	  	'z-index': 2000,
-	      	  }).fadeIn(1000, function(){
-	      	  	  messageEl.fadeOut(10000);
-	      	  });
-	      };
-
-	   var getMoveRouteDirectionRequest = function(callback) {
-      		moveMapGeocoder.geocode({'address': moveFromPlace}, function(results, status){
-      			
-      			if(status === google.maps.GeocoderStatus.OK)
-      			{
-      				var destinationFound = false;
-
-      				for(var i=0; i < results.length; i++)
-      				{
-      					if(destinationFound) break;
-
-      					var result = results[i];
-
-      					if(result.formatted_address.indexOf('Kenya') != -1)
-      					{
-      						var origin = result.geometry.location,
-	      				    destination = null;
-
-		        			moveMap.setCenter(origin);
-
-		      				moveMapGeocoder.geocode({'address': moveToPlace}, function(dresults, status){
-
-		      					if(status === google.maps.GeocoderStatus.OK)
-		      					{
-      								for(var j=0; j < dresults.length; j++)
-				      				{
-			      						var dresult = dresults[j];
-
-				      					if(dresult.formatted_address.indexOf('Kenya') != -1)
-				      					{			
-				      						destination = dresult.geometry.location;
-
-											callback.apply(this, [{
-				  								'destination': destination,
-				  								'origin': origin,
-				  								'travelMode': google.maps.TravelMode.DRIVING
-				  							}]);
-
-				  							destinationFound = true;
-
-				  							break;
-				  						}
-			  						}
-
-		      					}
-		      					else
-		      					{
-		      						showMapError('Error geocoding to address');
-		      					}
-		      				});
-		      			}
-	      			}
-      			}
-      			else
-      			{
-      				showMapError('Error geocoding from address');
-      			}
-      		});
-	      };
-
-	   var showMoveRouteDirection = function() {
-	      	 getMoveRouteDirectionRequest(function(request) {
-		      	 var moveMapDirectionsService = new google.maps.DirectionsService();
-		      	 moveMapDirectionsService.route(request, function(response, status) {
-				    if (status == google.maps.DirectionsStatus.OK) {
-				      // Display the route on the map.
-				      var routeDistance = (response.routes[0]['legs'][0]['distance']['value']/1000);
-				      moveMapDirectionDisplay.setDirections(response);
-				      $('#move_distance').text(Math.round(routeDistance) + " Km");
-				      $('#hidden_distance').val(Math.round(routeDistance));
-				    }
-				    else
-				    {
-      					showMapError('Error showing move route '+status);
-				    }
-				  });
-		     });
-	      };
-	      
-	});
-
-}(window.jQuery));
-</script>
+<?php $app_scripts['movemap-carousel-distance']='js/app/views/carousel-distance-calc.js'; ?>
